@@ -28,6 +28,7 @@ export class Menu extends FoundationElement {
     public items: HTMLSlotElement;
     private itemsChanged(oldValue, newValue): void {
         if (this.$fastController.isConnected) {
+            console.debug(`${oldValue} >>>>> ${newValue}`);
             this.menuItems = this.domChildren();
             this.resetItems(oldValue);
             this.setItems();

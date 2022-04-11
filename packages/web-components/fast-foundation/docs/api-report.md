@@ -2147,6 +2147,8 @@ export class Select extends FormAssociatedSelect {
     // (undocumented)
     connectedCallback(): void;
     // @internal
+    control: HTMLElement;
+    // @internal
     disabledChanged(prev: boolean, next: boolean): void;
     displayValue: string;
     // @internal
@@ -2156,15 +2158,13 @@ export class Select extends FormAssociatedSelect {
     // @internal
     keydownHandler(e: KeyboardEvent): boolean | void;
     // @internal
-    listbox: HTMLDivElement;
+    listbox: HTMLElement;
     // @internal
     listboxId: string;
     // @internal
     maxHeight: number;
     // @internal
     menuConfig: AnchoredRegionConfig;
-    // Warning: (ae-incompatible-release-tags) The symbol "menuPlacement" is marked as @public, but its signature references "menuConfigs" which is marked as @beta
-    menuPlacement: menuConfigs;
     open: boolean;
     // (undocumented)
     protected openChanged(): void;
@@ -2196,9 +2196,21 @@ export type SelectOptions = FoundationElementDefinition & StartEndOptions & {
 // @public
 export enum SelectPosition {
     // (undocumented)
-    above = "above",
+    above = "top",
     // (undocumented)
-    below = "below"
+    below = "bottom",
+    // (undocumented)
+    bottom = "bottom",
+    // (undocumented)
+    bottomfill = "bottom-fill",
+    // (undocumented)
+    tallest = "tallest",
+    // (undocumented)
+    tallestfill = "tallest-fill",
+    // (undocumented)
+    top = "top",
+    // (undocumented)
+    topfill = "top-fill"
 }
 
 // @public

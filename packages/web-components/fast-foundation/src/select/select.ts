@@ -17,9 +17,8 @@ import {
     FlyoutPosTop,
     FlyoutPosTopFill,
 } from "../anchored-region/index.js";
-import type { menuConfigs } from "../picker/index.js";
 import { FormAssociatedSelect } from "./select.form-associated.js";
-import { SelectPosition } from "./select.options.js";
+import type { SelectPosition } from "./select.options.js";
 
 /**
  * Select configuration options
@@ -62,21 +61,6 @@ export class Select extends FormAssociatedSelect {
 
         this.ariaControls = "";
         this.ariaExpanded = "false";
-    }
-
-    /**
-     * Controls menu placement
-     *
-     * @public
-     * @remarks
-     * HTML Attribute: menu-placement
-     */
-    @attr({ attribute: "menu-placement" })
-    public menuPlacement: menuConfigs = "top";
-    private menuPlacementChanged(): void {
-        if (this.$fastController.isConnected) {
-            this.updateMenuConfig();
-        }
     }
 
     /**
@@ -184,13 +168,11 @@ export class Select extends FormAssociatedSelect {
      */
     @attr({ attribute: "position" })
     public positionAttribute: SelectPosition | "above" | "below";
-
-    /**
-     * Indicates the initial state of the position attribute.
-     *
-     * @internal
-     */
-    private forcedPosition: boolean = false;
+    private positionAttributeChanged(): void {
+        if (this.$fastController.isConnected) {
+            this.updateMenuConfig();
+        }
+    }
 
     /**
      * Holds the current state for the calculated position of the listbox.
@@ -198,7 +180,7 @@ export class Select extends FormAssociatedSelect {
      * @public
      */
     @observable
-    public position: SelectPosition | "above" | "below" = SelectPosition.below;
+    public position: SelectPosition | "above" | "below" = "above";
     protected positionChanged() {
         this.positionAttribute = this.position;
     }
@@ -208,7 +190,14 @@ export class Select extends FormAssociatedSelect {
      *
      * @internal
      */
-    public listbox: HTMLDivElement;
+    public listbox: HTMLElement;
+
+    /**
+     * Reference to the internal listbox element.
+     *
+     * @internal
+     */
+    public control: HTMLElement;
 
     /**
      * The unique id for the internal listbox element.
@@ -429,10 +418,9 @@ export class Select extends FormAssociatedSelect {
 
     public connectedCallback() {
         super.connectedCallback();
-        this.forcedPosition = !!this.positionAttribute;
         this.updateMenuConfig();
         DOM.queueUpdate(() => {
-            this.region.anchorElement = this;
+            this.region.anchorElement = this.control;
         });
     }
 
@@ -440,7 +428,7 @@ export class Select extends FormAssociatedSelect {
      * Updates the menu configuration
      */
     private updateMenuConfig(): void {
-        let newConfig = this.configLookup[this.menuPlacement];
+        let newConfig = this.configLookup[this.position];
 
         if (newConfig === null) {
             newConfig = FlyoutPosBottomFill;

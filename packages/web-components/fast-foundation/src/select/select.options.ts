@@ -3,6 +3,12 @@
  * @public
  */
 export enum SelectPosition {
-    above = "above",
-    below = "below",
+    above = "top",
+    below = "bottom",
+    bottom = "bottom",
+    bottomfill = "bottom-fill",
+    tallest = "tallest",
+    tallestfill = "tallest-fill",
+    top = "top",
+    topfill = "top-fill",
 }

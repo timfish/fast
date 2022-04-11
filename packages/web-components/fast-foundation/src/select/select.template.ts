@@ -31,7 +31,12 @@ export const selectTemplate: FoundationElementTemplate<
         @focusout="${(x, c) => x.focusoutHandler(c.event as FocusEvent)}"
         @keydown="${(x, c) => x.keydownHandler(c.event as KeyboardEvent)}"
     >
-        <div class="control" part="control" ?disabled="${x => x.disabled}">
+        <div
+            class="control"
+            part="control"
+            ?disabled="${x => x.disabled}"
+            ${ref("control")}
+        >
             ${startSlotTemplate(context, definition)}
             <slot name="button-container">
                 <div class="selected-value" part="selected-value">
@@ -48,7 +53,7 @@ export const selectTemplate: FoundationElementTemplate<
         <${anchoredRegionTag}
             class="region"
             part="region"
-            auto-update-mode="${x => x.menuConfig?.autoUpdateMode}"
+            auto-update-mode="${x => (x.open ? "auto" : "anchor")}"
             fixed-placement="${x => x.menuConfig?.fixedPlacement}"
             vertical-positioning-mode="${x => x.menuConfig?.verticalPositioningMode}"
             vertical-default-position="${x => x.menuConfig?.verticalDefaultPosition}"
@@ -63,12 +68,12 @@ export const selectTemplate: FoundationElementTemplate<
             ${ref("region")}
         >
         <div
+            ?hidden="${x => !x.open}"
             class="listbox"
             id="${x => x.listboxId}"
             part="listbox"
             role="listbox"
             ?disabled="${x => x.disabled}"
-            ?hidden="${x => !x.open}"
             ${ref("listbox")}
         >
             <slot

@@ -2161,6 +2161,10 @@ export class Select extends FormAssociatedSelect {
     listboxId: string;
     // @internal
     maxHeight: number;
+    // @internal
+    menuConfig: AnchoredRegionConfig;
+    // Warning: (ae-incompatible-release-tags) The symbol "menuPlacement" is marked as @public, but its signature references "menuConfigs" which is marked as @beta
+    menuPlacement: menuConfigs;
     open: boolean;
     // (undocumented)
     protected openChanged(): void;
@@ -2169,10 +2173,11 @@ export class Select extends FormAssociatedSelect {
     // (undocumented)
     protected positionChanged(): void;
     // @internal
+    region: AnchoredRegion;
+    // @internal
     selectedIndexChanged(prev: number, next: number): void;
     // (undocumented)
     protected setDefaultSelectedOption(): void;
-    setPositioning(): void;
     // @internal
     slottedOptionsChanged(prev: Element[], next: Element[]): void;
     get value(): string;

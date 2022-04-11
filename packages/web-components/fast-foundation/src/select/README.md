@@ -96,6 +96,7 @@ See [listbox-option](/docs/components/listbox-option) for more information.
 | Name                | Privacy   | Type                                   | Default | Description                                                                                                                                                                         | Inherited From       |
 | ------------------- | --------- | -------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
 | `open`              | public    | `boolean`                              | `false` | The open attribute.                                                                                                                                                                 |                      |
+| `menuPlacement`     | public    | `menuConfigs`                          | `"top"` | Controls menu placement                                                                                                                                                             |                      |
 | `value`             | public    |                                        |         | The value property.                                                                                                                                                                 |                      |
 | `positionAttribute` | public    | `SelectPosition or "above" or "below"` |         | Reflects the placement for the listbox when the select is open.                                                                                                                     |                      |
 | `position`          | public    | `SelectPosition or "above" or "below"` |         | Holds the current state for the calculated position of the listbox.                                                                                                                 |                      |
@@ -114,24 +115,24 @@ See [listbox-option](/docs/components/listbox-option) for more information.
 
 #### Methods
 
-| Name                       | Privacy   | Description                                                                | Parameters | Return | Inherited From    |
-| -------------------------- | --------- | -------------------------------------------------------------------------- | ---------- | ------ | ----------------- |
-| `openChanged`              | protected |                                                                            |            |        |                   |
-| `positionChanged`          | protected |                                                                            |            |        |                   |
-| `setPositioning`           | public    | Calculate and apply listbox positioning based on available viewport space. | `force`    | `void` |                   |
-| `setDefaultSelectedOption` | protected |                                                                            |            | `void` |                   |
-| `selectFirstOption`        | public    | Moves focus to the first selectable option.                                |            | `void` | Listbox           |
-| `setSelectedOptions`       | public    | Sets an option as selected and gives it focus.                             |            |        | Listbox           |
-| `templateChanged`          | protected |                                                                            |            | `void` | FoundationElement |
-| `stylesChanged`            | protected |                                                                            |            | `void` | FoundationElement |
+| Name                       | Privacy   | Description                                    | Parameters | Return | Inherited From    |
+| -------------------------- | --------- | ---------------------------------------------- | ---------- | ------ | ----------------- |
+| `openChanged`              | protected |                                                |            |        |                   |
+| `positionChanged`          | protected |                                                |            |        |                   |
+| `setDefaultSelectedOption` | protected |                                                |            | `void` |                   |
+| `selectFirstOption`        | public    | Moves focus to the first selectable option.    |            | `void` | Listbox           |
+| `setSelectedOptions`       | public    | Sets an option as selected and gives it focus. |            |        | Listbox           |
+| `templateChanged`          | protected |                                                |            | `void` | FoundationElement |
+| `stylesChanged`            | protected |                                                |            | `void` | FoundationElement |
 
 #### Attributes
 
-| Name       | Field             | Inherited From |
-| ---------- | ----------------- | -------------- |
-| `open`     | open              |                |
-| `position` | positionAttribute |                |
-|            | disabled          | Listbox        |
+| Name             | Field             | Inherited From |
+| ---------------- | ----------------- | -------------- |
+| `open`           | open              |                |
+| `menu-placement` | menuPlacement     |                |
+| `position`       | positionAttribute |                |
+|                  | disabled          | Listbox        |
 
 <hr/>
 

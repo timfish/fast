@@ -7,6 +7,17 @@ import type { ListboxOption } from "../listbox-option/listbox-option.js";
 import { StartEnd } from "../patterns/start-end.js";
 import type { StartEndOptions } from "../patterns/start-end.js";
 import { applyMixins } from "../utilities/apply-mixins.js";
+import {
+    AnchoredRegion,
+    AnchoredRegionConfig,
+    FlyoutPosBottom,
+    FlyoutPosBottomFill,
+    FlyoutPosTallest,
+    FlyoutPosTallestFill,
+    FlyoutPosTop,
+    FlyoutPosTopFill,
+} from "../anchored-region/index.js";
+import type { menuConfigs } from "../picker/index.js";
 import { FormAssociatedSelect } from "./select.form-associated.js";
 import { SelectPosition } from "./select.options.js";
 
@@ -40,7 +51,6 @@ export class Select extends FormAssociatedSelect {
             this.ariaControls = this.listboxId;
             this.ariaExpanded = "true";
 
-            this.setPositioning();
             this.focusAndScrollOptionIntoView();
             this.indexWhenOpened = this.selectedIndex;
 
@@ -53,6 +63,29 @@ export class Select extends FormAssociatedSelect {
         this.ariaControls = "";
         this.ariaExpanded = "false";
     }
+
+    /**
+     * Controls menu placement
+     *
+     * @public
+     * @remarks
+     * HTML Attribute: menu-placement
+     */
+    @attr({ attribute: "menu-placement" })
+    public menuPlacement: menuConfigs = "top";
+    private menuPlacementChanged(): void {
+        if (this.$fastController.isConnected) {
+            this.updateMenuConfig();
+        }
+    }
+
+    /**
+     *  The anchored region config to apply.
+     *
+     * @internal
+     */
+    @observable
+    public menuConfig: AnchoredRegionConfig;
 
     private indexWhenOpened: number;
 
@@ -106,6 +139,13 @@ export class Select extends FormAssociatedSelect {
             Observable.notify(this, "value");
         }
     }
+
+    /**
+     * reference to the anchored region element
+     *
+     * @internal
+     */
+    public region: AnchoredRegion;
 
     private updateValue(shouldEmit?: boolean) {
         if (this.$fastController.isConnected) {
@@ -161,7 +201,6 @@ export class Select extends FormAssociatedSelect {
     public position: SelectPosition | "above" | "below" = SelectPosition.below;
     protected positionChanged() {
         this.positionAttribute = this.position;
-        this.setPositioning();
     }
 
     /**
@@ -177,31 +216,6 @@ export class Select extends FormAssociatedSelect {
      * @internal
      */
     public listboxId: string = uniqueId("listbox-");
-
-    /**
-     * Calculate and apply listbox positioning based on available viewport space.
-     *
-     * @param force - direction to force the listbox to display
-     * @public
-     */
-    public setPositioning(): void {
-        const currentBox = this.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        const availableBottom = viewportHeight - currentBox.bottom;
-
-        this.position = this.forcedPosition
-            ? this.positionAttribute
-            : currentBox.top > availableBottom
-            ? SelectPosition.above
-            : SelectPosition.below;
-
-        this.positionAttribute = this.forcedPosition
-            ? this.positionAttribute
-            : this.position;
-
-        this.maxHeight =
-            this.position === SelectPosition.above ? ~~currentBox.top : ~~availableBottom;
-    }
 
     /**
      * The max height for the listbox when opened.
@@ -416,7 +430,44 @@ export class Select extends FormAssociatedSelect {
     public connectedCallback() {
         super.connectedCallback();
         this.forcedPosition = !!this.positionAttribute;
+        this.updateMenuConfig();
+        DOM.queueUpdate(() => {
+            this.region.anchorElement = this;
+        });
     }
+
+    /**
+     * Updates the menu configuration
+     */
+    private updateMenuConfig(): void {
+        let newConfig = this.configLookup[this.menuPlacement];
+
+        if (newConfig === null) {
+            newConfig = FlyoutPosBottomFill;
+        }
+
+        this.menuConfig = {
+            ...newConfig,
+            autoUpdateMode: "auto",
+            fixedPlacement: true,
+            horizontalViewportLock: false,
+            verticalViewportLock: false,
+        };
+    }
+
+    /**
+     * matches menu placement values with the associated menu config
+     */
+    private configLookup: object = {
+        above: FlyoutPosTop,
+        below: FlyoutPosBottom,
+        top: FlyoutPosTop,
+        bottom: FlyoutPosBottom,
+        tallest: FlyoutPosTallest,
+        "top-fill": FlyoutPosTopFill,
+        "bottom-fill": FlyoutPosBottomFill,
+        "tallest-fill": FlyoutPosTallestFill,
+    };
 }
 
 /**

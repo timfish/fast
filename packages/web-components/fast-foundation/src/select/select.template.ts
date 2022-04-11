@@ -1,5 +1,6 @@
 import { html, ref, slotted } from "@microsoft/fast-element";
 import type { ViewTemplate } from "@microsoft/fast-element";
+import { AnchoredRegion } from "../anchored-region/anchored-region.js";
 import type { FoundationElementTemplate } from "../foundation-element/foundation-element.js";
 import { Listbox } from "../listbox/listbox.js";
 import { endSlotTemplate, startSlotTemplate } from "../patterns/start-end.js";
@@ -12,10 +13,12 @@ import type { Select, SelectOptions } from "./select.js";
 export const selectTemplate: FoundationElementTemplate<
     ViewTemplate<Select>,
     SelectOptions
-> = (context, definition) => html`
+> = (context, definition) => {
+    const anchoredRegionTag: string = context.tagFor(AnchoredRegion);
+    return html`
     <template
         class="${x => (x.open ? "open" : "")} ${x =>
-            x.disabled ? "disabled" : ""} ${x => x.position}"
+        x.disabled ? "disabled" : ""} ${x => x.position}"
         aria-activedescendant="${x => x.ariaActiveDescendant}"
         aria-controls="${x => x.ariaControls}"
         aria-disabled="${x => x.ariaDisabled}"
@@ -42,6 +45,23 @@ export const selectTemplate: FoundationElementTemplate<
             </slot>
             ${endSlotTemplate(context, definition)}
         </div>
+        <${anchoredRegionTag}
+            class="region"
+            part="region"
+            auto-update-mode="${x => x.menuConfig?.autoUpdateMode}"
+            fixed-placement="${x => x.menuConfig?.fixedPlacement}"
+            vertical-positioning-mode="${x => x.menuConfig?.verticalPositioningMode}"
+            vertical-default-position="${x => x.menuConfig?.verticalDefaultPosition}"
+            vertical-scaling="${x => x.menuConfig?.verticalScaling}"
+            vertical-inset="${x => x.menuConfig?.verticalInset}"
+            vertical-viewport-lock="${x => x.menuConfig?.verticalViewportLock}"
+            horizontal-positioning-mode="${x => x.menuConfig?.horizontalPositioningMode}"
+            horizontal-default-position="${x => x.menuConfig?.horizontalDefaultPosition}"
+            horizontal-scaling="${x => x.menuConfig?.horizontalScaling}"
+            horizontal-inset="${x => x.menuConfig?.horizontalInset}"
+            horizontal-viewport-lock="${x => x.menuConfig?.horizontalViewportLock}"
+            ${ref("region")}
+        >
         <div
             class="listbox"
             id="${x => x.listboxId}"
@@ -59,5 +79,7 @@ export const selectTemplate: FoundationElementTemplate<
                 })}
             ></slot>
         </div>
+        </${anchoredRegionTag}>
     </template>
 `;
+};

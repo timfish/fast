@@ -47,7 +47,7 @@ export const selectStyles: FoundationElementTemplate<ElementStyles, SelectOption
     definition
 ) =>
     css`
-    ${display("inline-flex")} :host {
+    :host {
         --elevation: 14;
         background: ${neutralFillInputRest};
         border-radius: calc(${controlCornerRadius} * 1px);
@@ -56,7 +56,21 @@ export const selectStyles: FoundationElementTemplate<ElementStyles, SelectOption
         color: ${neutralForegroundRest};
         font-family: ${bodyFont};
         height: calc(${heightNumber} * 1px);
-        position: relative;
+        user-select: none;
+        min-width: 250px;
+        outline: none;
+        vertical-align: top;
+    }
+
+    ${display("inline-flex")} {
+        --elevation: 14;
+        background: ${neutralFillInputRest};
+        border-radius: calc(${controlCornerRadius} * 1px);
+        border: calc(${strokeWidth} * 1px) solid ${accentFillRest};
+        box-sizing: border-box;
+        color: ${neutralForegroundRest};
+        font-family: ${bodyFont};
+        height: calc(${heightNumber} * 1px);
         user-select: none;
         min-width: 250px;
         outline: none;
@@ -75,7 +89,6 @@ export const selectStyles: FoundationElementTemplate<ElementStyles, SelectOption
         max-height: calc(var(--max-height) - (${heightNumber} * 1px));
         padding: calc(${designUnit} * 1px) 0;
         overflow-y: auto;
-        position: absolute;
         width: 100%;
         z-index: 1;
     }
@@ -134,26 +147,6 @@ export const selectStyles: FoundationElementTemplate<ElementStyles, SelectOption
         background: ${neutralFillInputActive};
         border-color: ${accentFillActive};
         border-radius: calc(${controlCornerRadius} * 1px);
-    }
-
-    :host([open][position="above"]) .listbox {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-
-    :host([open][position="below"]) .listbox {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-    }
-
-    :host([open][position="above"]) .listbox {
-        border-bottom: 0;
-        bottom: calc(${heightNumber} * 1px);
-    }
-
-    :host([open][position="below"]) .listbox {
-        border-top: 0;
-        top: calc(${heightNumber} * 1px);
     }
 
     .selected-value {

@@ -189,32 +189,33 @@ export class FASTTextField extends TextField {}
 
 #### Fields
 
-| Name                         | Privacy | Type                        | Default                      | Description                                                                                                                   | Inherited From       |
-| ---------------------------- | ------- | --------------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | -------------------- |
-| `selection`                  | public  | `string`                    | `""`                         | Currently selected items. Comma delineated string ie. "apples,oranges".                                                       |                      |
-| `options`                    | public  | `string`                    |                              | Currently available options. Comma delineated string ie. "apples,oranges".                                                    |                      |
-| `filterSelected`             | public  | `boolean`                   | `false`                      | Whether the component should remove an option from the list when it is in the selection                                       |                      |
-| `filterQuery`                | public  | `boolean`                   | `true`                       | DEPRACATED -- use queryFilterDisabled. Whether the component should remove options based on the current query                 |                      |
-| `queryFilterDisabled`        | public  | `boolean`                   | `false`                      | Whether the component should remove options based on the current query                                                        |                      |
-| `maxSelected`                | public  | `number or undefined`       |                              | The maximum number of items that can be selected.                                                                             |                      |
-| `noSuggestionsText`          | public  | `string`                    | `"No suggestions available"` | The text to present to assistive technolgies when no suggestions are available.                                               |                      |
-| `suggestionsAvailableText`   | public  | `string`                    | `"Suggestions available"`    | The text to present to assistive technolgies when suggestions are available.                                                  |                      |
-| `loadingText`                | public  | `string`                    | `"Loading suggestions"`      | The text to present to assistive technologies when suggestions are loading.                                                   |                      |
-| `label`                      | public  | `string`                    |                              | Applied to the aria-label attribute of the input element                                                                      |                      |
-| `labelledBy`                 | public  | `string`                    |                              | Applied to the aria-labelledby attribute of the input element                                                                 |                      |
-| `placeholder`                | public  | `string`                    |                              | Applied to the placeholder attribute of the input element                                                                     |                      |
-| `menuPlacement`              | public  | `MenuPlacement`             |                              | Controls menu placement                                                                                                       |                      |
-| `showLoading`                | public  | `boolean`                   | `false`                      | Whether to display a loading state if the menu is opened.                                                                     |                      |
-| `listItemTemplate`           | public  | `ViewTemplate`              |                              | Template used to generate selected items. This is used in a repeat directive.                                                 |                      |
-| `defaultListItemTemplate`    | public  | `ViewTemplate or undefined` |                              | Default template to use for selected items (usually specified in the component template). This is used in a repeat directive. |                      |
-| `menuOptionTemplate`         | public  | `ViewTemplate`              |                              | Template to use for available options. This is used in a repeat directive.                                                    |                      |
-| `defaultMenuOptionTemplate`  | public  | `ViewTemplate or undefined` |                              | Default template to use for available options (usually specified in the template). This is used in a repeat directive.        |                      |
-| `listItemContentsTemplate`   | public  | `ViewTemplate`              |                              | Template to use for the contents of a selected list item                                                                      |                      |
-| `menuOptionContentsTemplate` | public  | `ViewTemplate`              |                              | Template to use for the contents of menu options                                                                              |                      |
-| `optionsList`                | public  | `string[]`                  | `[]`                         | Current list of options in array form                                                                                         |                      |
-| `query`                      | public  | `string`                    |                              | The text value currently in the input field                                                                                   |                      |
-| `itemsPlaceholderElement`    | public  | `Node`                      |                              | Reference to the placeholder element for the repeat directive                                                                 |                      |
-| `proxy`                      |         |                             |                              |                                                                                                                               | FormAssociatedPicker |
+| Name                         | Privacy | Type                        | Default                      | Description                                                                                                                       | Inherited From       |
+| ---------------------------- | ------- | --------------------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| `selection`                  | public  | `string`                    | `""`                         | Currently selected items. Comma delineated string ie. "apples,oranges".                                                           |                      |
+| `options`                    | public  | `string`                    |                              | Currently available options. Comma delineated string ie. "apples,oranges".                                                        |                      |
+| `filterSelected`             | public  | `boolean`                   | `false`                      | DEPRACATED -- use disableSelectionFilter. Whether the component should remove an option from the list when it is in the selection |                      |
+| `disableSelectionFilter`     | public  | `boolean`                   | `false`                      | Whether the component should remove an option from the list when it is in the selection. Default is false.                        |                      |
+| `filterQuery`                | public  | `boolean`                   | `true`                       | DEPRACATED -- use disableQueryFilter. Whether the component should remove options based on the current query                      |                      |
+| `disableQueryFilter`         | public  | `boolean`                   | `false`                      | Whether the component should remove options based on the current query. Default is false.                                         |                      |
+| `maxSelected`                | public  | `number or undefined`       |                              | The maximum number of items that can be selected.                                                                                 |                      |
+| `noSuggestionsText`          | public  | `string`                    | `"No suggestions available"` | The text to present to assistive technolgies when no suggestions are available.                                                   |                      |
+| `suggestionsAvailableText`   | public  | `string`                    | `"Suggestions available"`    | The text to present to assistive technolgies when suggestions are available.                                                      |                      |
+| `loadingText`                | public  | `string`                    | `"Loading suggestions"`      | The text to present to assistive technologies when suggestions are loading.                                                       |                      |
+| `label`                      | public  | `string`                    |                              | Applied to the aria-label attribute of the input element                                                                          |                      |
+| `labelledBy`                 | public  | `string`                    |                              | Applied to the aria-labelledby attribute of the input element                                                                     |                      |
+| `placeholder`                | public  | `string`                    |                              | Applied to the placeholder attribute of the input element                                                                         |                      |
+| `menuPlacement`              | public  | `MenuPlacement`             |                              | Controls menu placement                                                                                                           |                      |
+| `showLoading`                | public  | `boolean`                   | `false`                      | Whether to display a loading state if the menu is opened.                                                                         |                      |
+| `listItemTemplate`           | public  | `ViewTemplate`              |                              | Template used to generate selected items. This is used in a repeat directive.                                                     |                      |
+| `defaultListItemTemplate`    | public  | `ViewTemplate or undefined` |                              | Default template to use for selected items (usually specified in the component template). This is used in a repeat directive.     |                      |
+| `menuOptionTemplate`         | public  | `ViewTemplate`              |                              | Template to use for available options. This is used in a repeat directive.                                                        |                      |
+| `defaultMenuOptionTemplate`  | public  | `ViewTemplate or undefined` |                              | Default template to use for available options (usually specified in the template). This is used in a repeat directive.            |                      |
+| `listItemContentsTemplate`   | public  | `ViewTemplate`              |                              | Template to use for the contents of a selected list item                                                                          |                      |
+| `menuOptionContentsTemplate` | public  | `ViewTemplate`              |                              | Template to use for the contents of menu options                                                                                  |                      |
+| `optionsList`                | public  | `string[]`                  | `[]`                         | Current list of options in array form                                                                                             |                      |
+| `query`                      | public  | `string`                    |                              | The text value currently in the input field                                                                                       |                      |
+| `itemsPlaceholderElement`    | public  | `Node`                      |                              | Reference to the placeholder element for the repeat directive                                                                     |                      |
+| `proxy`                      |         |                             |                              |                                                                                                                                   | FormAssociatedPicker |
 
 #### Methods
 
@@ -222,8 +223,10 @@ export class FASTTextField extends TextField {}
 | ---------------------------------- | --------- | ------------------------------------------------------------- | ------------------ | --------- | -------------- |
 | `selectionChanged`                 | protected |                                                               |                    | `void`    |                |
 | `optionsChanged`                   | protected |                                                               |                    | `void`    |                |
+| `filterSelectedChanged`            | protected |                                                               |                    | `void`    |                |
+| `disableSelectionFilterChanged`    | protected |                                                               |                    | `void`    |                |
 | `filterQueryChanged`               | protected |                                                               |                    | `void`    |                |
-| `queryFilterDisabledChanged`       | protected |                                                               |                    | `void`    |                |
+| `disableQueryFilterChanged`        | protected |                                                               |                    | `void`    |                |
 | `menuPlacementChanged`             | protected |                                                               |                    | `void`    |                |
 | `showLoadingChanged`               | protected |                                                               |                    | `void`    |                |
 | `listItemTemplateChanged`          | protected |                                                               |                    | `void`    |                |
@@ -247,8 +250,8 @@ export class FASTTextField extends TextField {}
 | ---------------------------- | ------------------------ | -------------- |
 | `selection`                  | selection                |                |
 | `options`                    | options                  |                |
-| `filter-selected`            | filterSelected           |                |
-| `query-filter-disabled`      | queryFilterDisabled      |                |
+| `disable-selection-filter`   | disableSelectionFilter   |                |
+| `disable-query-filter`       | disableQueryFilter       |                |
 | `max-selected`               | maxSelected              |                |
 | `no-suggestions-text`        | noSuggestionsText        |                |
 | `suggestions-available-text` | suggestionsAvailableText |                |

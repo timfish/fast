@@ -1517,6 +1517,12 @@ export class FASTPicker extends FormAssociatedPicker {
     defaultMenuOptionTemplate?: ViewTemplate;
     // (undocumented)
     protected defaultMenuOptionTemplateChanged(): void;
+    disableQueryFilter: boolean;
+    // (undocumented)
+    protected disableQueryFilterChanged(): void;
+    disableSelectionFilter: boolean;
+    // (undocumented)
+    protected disableSelectionFilterChanged(): void;
     // (undocumented)
     disconnectedCallback(): void;
     // @internal
@@ -1525,6 +1531,8 @@ export class FASTPicker extends FormAssociatedPicker {
     // (undocumented)
     protected filterQueryChanged(): void;
     filterSelected: boolean;
+    // (undocumented)
+    protected filterSelectedChanged(): void;
     // @internal
     flyoutOpen: boolean;
     // (undocumented)
@@ -1579,9 +1587,6 @@ export class FASTPicker extends FormAssociatedPicker {
     query: string;
     // (undocumented)
     protected queryChanged(): void;
-    queryFilterDisabled: boolean;
-    // (undocumented)
-    protected queryFilterDisabledChanged(): void;
     // @internal
     region: FASTAnchoredRegion;
     // @internal (undocumented)

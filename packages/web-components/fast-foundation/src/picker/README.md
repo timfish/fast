@@ -194,6 +194,7 @@ export class FASTTextField extends TextField {}
 | `selection`                  | public  | `string`                    | `""`                         | Currently selected items. Comma delineated string ie. "apples,oranges".                                                       |                      |
 | `options`                    | public  | `string`                    |                              | Currently available options. Comma delineated string ie. "apples,oranges".                                                    |                      |
 | `filterSelected`             | public  | `boolean`                   | `false`                      | Whether the component should remove an option from the list when it is in the selection                                       |                      |
+| `filterQuery`                | public  | `boolean`                   | `true`                       | DEPRACATED -- use queryFilterDisabled. Whether the component should remove options based on the current query                 |                      |
 | `queryFilterDisabled`        | public  | `boolean`                   | `false`                      | Whether the component should remove options based on the current query                                                        |                      |
 | `maxSelected`                | public  | `number or undefined`       |                              | The maximum number of items that can be selected.                                                                             |                      |
 | `noSuggestionsText`          | public  | `string`                    | `"No suggestions available"` | The text to present to assistive technolgies when no suggestions are available.                                               |                      |
@@ -221,6 +222,8 @@ export class FASTTextField extends TextField {}
 | ---------------------------------- | --------- | ------------------------------------------------------------- | ------------------ | --------- | -------------- |
 | `selectionChanged`                 | protected |                                                               |                    | `void`    |                |
 | `optionsChanged`                   | protected |                                                               |                    | `void`    |                |
+| `filterQueryChanged`               | protected |                                                               |                    | `void`    |                |
+| `queryFilterDisabledChanged`       | protected |                                                               |                    | `void`    |                |
 | `menuPlacementChanged`             | protected |                                                               |                    | `void`    |                |
 | `showLoadingChanged`               | protected |                                                               |                    | `void`    |                |
 | `listItemTemplateChanged`          | protected |                                                               |                    | `void`    |                |

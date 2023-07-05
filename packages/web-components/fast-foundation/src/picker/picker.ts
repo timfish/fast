@@ -94,7 +94,7 @@ export class FASTPicker extends FormAssociatedPicker {
     }
 
     /**
-     * DEPRACATED -- use disableSelectionFilter. Whether the component should remove an option from the list when it is in the selection
+     * @deprecated use `Picker.disableSelectionFilter`.
      */
     @observable
     public filterSelected: boolean = false;
@@ -121,7 +121,7 @@ export class FASTPicker extends FormAssociatedPicker {
     }
 
     /**
-     * DEPRACATED -- use disableQueryFilter. Whether the component should remove options based on the current query
+     * @deprecated use `Picker.disableQueryFilter`.
      */
     @observable
     public filterQuery: boolean = true;

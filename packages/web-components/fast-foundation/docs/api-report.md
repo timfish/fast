@@ -1521,9 +1521,6 @@ export class FASTPicker extends FormAssociatedPicker {
     disconnectedCallback(): void;
     // @internal
     filteredOptionsList: string[];
-    // (undocumented)
-    protected filteredOptionsListChanged(): void;
-    filterQuery: boolean;
     filterSelected: boolean;
     // @internal
     flyoutOpen: boolean;
@@ -1579,6 +1576,7 @@ export class FASTPicker extends FormAssociatedPicker {
     query: string;
     // (undocumented)
     protected queryChanged(): void;
+    queryFilterDisabled: boolean;
     // @internal
     region: FASTAnchoredRegion;
     // @internal (undocumented)
